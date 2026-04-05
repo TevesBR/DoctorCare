@@ -127,6 +127,10 @@ section .content p {
   background-color: var(--brand-dark);
 }
 
+.button-desktop {
+  display: none;
+}
+
 .social-links {
   display: flex;
   align-items: center;
@@ -226,7 +230,12 @@ body.menu-expanded .menu {
   width: 100vw;
   height: 100vh;
 
-  padding-top: var(--nav-height);
+  /*padding-top: var(--nav-height);*/
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
   transition: transform 300ms;
   transform: translateY(0);
@@ -237,8 +246,6 @@ body.menu-expanded .menu {
   flex-direction: column;
   gap: 4.8rem;
 
-  margin-top: 6rem;
-
   font-weight: 700;
   font-size: 2.4rem;
   line-height: 3.1rem;
@@ -247,6 +254,7 @@ body.menu-expanded .menu {
 .menu ul li a {
   color: white;
   text-decoration: none;
+  text-align: center;
 }
 
 .menu .button {
@@ -260,11 +268,12 @@ body.menu-expanded .menu {
 
   color: var(--primary-color);
 
-  display: inline-block;
+  display: inline-flex;
   padding: 16px 32px;
 
   margin-top: 4.8rem;
   margin-bottom: 8rem;
+  margin-inline: auto;
 }
 
 .menu .button:hover {
@@ -397,9 +406,146 @@ body.menu-expanded button path {
   margin-bottom: 6rem;
 }
 
+/*=== TESTIMONIALS ============================*/
+#testimonials {
+  text-align: left;
+  position: relative;
+  background: var(--brand-light-02);
+}
+
+/* CONTEÚDO POR CIMA DO OVERLAY */
+#testimonials .wrapper {
+  position: relative;
+  z-index: 1;
+  padding: 2rem;
+}
+
+/* GRID RESPONSIVO */
+#testimonials .testimonials {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.4rem;
+}
+
+#testimonials header {
+  margin-bottom: 3.2rem;
+}
+
+#testimonials header h2 {
+  margin-bottom: 0.8rem;
+}
+
+/* DESKTOP */
+@media (min-width: 1024px) {
+  #testimonials .testimonials {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/*=== CARD ============================*/
+.testimonial {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(6px);
+
+  border-radius: 1.2rem;
+  padding: 2rem;
+
+  display: flex;
+  flex-direction: column;
+  min-height: 240px; /* 🔥 ESSENCIAL pra empurrar o footer */
+
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.testimonial:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+}
+
+/* TOPO */
+.testimonial-top {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.testimonial-top img {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* TEXTO */
+.testimonial-top h3 {
+  margin: 0;
+  font-size: 1.6rem;
+  color: var(--headline);
+}
+
+.job-title {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #777;
+}
+
+.rating {
+  color: #f5a623;
+  font-size: 1.3rem;
+}
+
+/* DESCRIÇÃO */
+.testimonial p {
+  color: #555;
+  font-size: 1.4rem;
+  line-height: 1.6;
+}
+
+/* RODAPÉ */
+.testimonial-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: auto; /* 🔥 empurra pro fundo */
+  gap: 1rem;
+  height: 30px;
+  
+}
+
+/* TEXTO */
+.author {
+  font-size: 1.2rem;
+  color: #888;
+  margin: 0;
+  line-height: 1;
+  display: inline-block;
+}
+
+/* BOTÃO */
+.testimonial-button {
+  background: var(--primary-color);
+  color: #fff;
+  border-radius: 2rem;
+  padding: 0.6rem 1.4rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.3s;
+
+  display: inline-block;
+  line-height: 1;
+}
+
+.testimonial-button:hover {
+  filter: brightness(1.1);
+}
+
 /*=== CONTACT ============================*/
 #contact {
   text-align: left;
+  background-color: var(--brand-light);
 }
 
 #contact header {
@@ -417,6 +563,7 @@ body.menu-expanded button path {
 #contact ul li {
   display: flex;
   align-items: center;
+  justify-content: flex-start;
   gap: 0.8rem;
 }
 
@@ -503,6 +650,33 @@ footer .social-links {
     line-height: 5.2rem;
   }
 
+  .button-mobile {
+  display: none !important;
+  }
+
+  .button-desktop {
+    display: flex;
+  }
+
+  nav#navigation .menu {
+    width: auto;
+    justify-content: center;
+  }
+
+  nav#navigation a.button-desktop {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 2.4rem;
+  border: 1px solid var(--primary-color);
+  border-radius: 4rem;
+  color: var(--primary-color);
+  font-weight: 700;
+  font-size: 1.4rem;
+  line-height: 1.8rem;
+  text-transform: uppercase;
+  }
+
   /*=== NAVIGATION ============================*/
   /* reset */
   nav#navigation .wrapper * {
@@ -529,9 +703,10 @@ footer .social-links {
 
   nav#navigation .menu {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 60%;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  flex: 1;
   }
 
   nav#navigation .menu ul:nth-child(1) {
@@ -539,29 +714,16 @@ footer .social-links {
     gap: 3.2rem;
   }
 
+  nav#navigation .menu .button {
+  margin: 0;
+}
+
   nav#navigation .menu ul li a {
     color: var(--primary-color);
     opacity: 0.7;
   }
 
-  nav#navigation .menu a.button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 1rem 2.4rem;
-
-    border: 1px solid var(--primary-color);
-    border-radius: 4rem;
-
-    color: var(--primary-color);
-
-    font-weight: 700;
-    font-size: 1.4rem;
-    line-height: 1.8rem;
-    text-transform: uppercase;
-  }
-
-  nav#navigation .menu a.button:hover {
+  nav#navigation a.button:hover {
     background-color: var(--primary-color);
     border: none;
     color: white;
@@ -572,7 +734,7 @@ footer .social-links {
     opacity: 0.6;
   }
 
-  nav#navigation.scroll .menu a.button {
+  nav#navigation.scroll a.button {
     border-color: white;
     color: white;
   }
@@ -617,8 +779,8 @@ footer .social-links {
     opacity: 1;
   }
 
-  nav#navigation.scroll .menu a.button.active,
-  nav#navigation.scroll .menu a.button:hover {
+  nav#navigation.scroll a.button.active,
+  nav#navigation.scroll a.button:hover {
     background-color: var(--primary-color);
     filter: brightness(1.3);
     border: none;
@@ -714,11 +876,19 @@ footer .social-links {
   #contact .wrapper {
     grid-template-columns: 1fr 57.5rem;
     grid-template-areas: 'A B';
+    justify-items: start;
+    align-items: center;
   }
 
   #contact h2 {
     width: 40.4rem;
   }
+
+  /*=== TESTIMONIALS ============================
+
+  #testimonials .wrapper {
+    column-count: 2;
+  }*/
 
   /*=== FOOTER ============================*/
   footer {
