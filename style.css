@@ -410,6 +410,8 @@ body.menu-expanded button path {
 #testimonials {
   text-align: left;
   position: relative;
+  justify-self: center;
+  margin: auto;
   background: var(--brand-light-02);
 }
 
